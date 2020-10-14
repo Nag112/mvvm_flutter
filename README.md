@@ -1,6 +1,6 @@
 # mvvm_example
 
-A new Flutter project.
+A new Flutter project based on mvvm architecture using stacked package.
 
 ## Getting Started
 
