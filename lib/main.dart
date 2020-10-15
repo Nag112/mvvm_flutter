@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
-import './ui/views/home/home.dart';
+import 'package:flutter/material.dart' hide Router;
+import 'package:mvvm_example/app/locator.dart';
+import 'package:mvvm_example/router.gr.dart';
+import 'package:stacked_services/stacked_services.dart';
+
 void main() {
+  setupLocator();
   runApp(MyApp());
 }
 
@@ -9,12 +13,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeView(),
+      initialRoute: Routes.startupView,
+      onGenerateRoute: Router(),
+      navigatorKey: locator<NavigationService>().navigatorKey,
     );
   }
 }
