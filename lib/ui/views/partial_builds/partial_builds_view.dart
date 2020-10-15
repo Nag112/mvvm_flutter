@@ -10,10 +10,13 @@ class PartialBuildsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<PartialBuildsViewModel>.nonReactive(
         builder: (context, model, child) => Scaffold(
-              body: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[_StringForm()],
+              body: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[_StringForm(), _TextValue()],
+                ),
               ),
             ),
         viewModelBuilder: () => PartialBuildsViewModel());
@@ -28,7 +31,19 @@ class _StringForm extends HookViewModelWidget<PartialBuildsViewModel> {
     var text = useTextEditingController();
     return TextField(
       controller: text,
+       decoration: InputDecoration(
+    border: OutlineInputBorder(),
+    labelText: 'Text',
+  ),
       onChanged: model.updateString,
     );
+  }
+}
+
+class _TextValue extends ViewModelWidget<PartialBuildsViewModel> {
+  _TextValue({Key key}) : super(key: key, reactive: true);
+  @override
+  Widget build(BuildContext context, PartialBuildsViewModel viewModel) {
+    return Text(viewModel.title);
   }
 }

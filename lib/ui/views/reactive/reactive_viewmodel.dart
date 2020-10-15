@@ -1,6 +1,6 @@
 import 'package:stacked/stacked.dart';
 
-class PartialBuildsViewModel extends BaseViewModel {
+class ReactiveExampleViewModel extends BaseViewModel {
   String _title = "title";
   String get title => _title;
   void updateString(String value) {
